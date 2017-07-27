@@ -3,8 +3,12 @@ package com.longyuan.study.longyuanstudy.ui.activity;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.longyuan.study.longyuanstudy.ui.fragment.InteractiveFragment;
 import com.longyuan.study.longyuanstudy.ui.fragment.MyFragment;
@@ -32,8 +36,8 @@ public class MainActivity extends BaseActiviy implements ViewPager.OnPageChangeL
     private List<String> mTabList = new ArrayList<>();
     private List<Fragment> mFragments = new ArrayList<>();
     private List<View> views = new ArrayList<>();
-//    private int[] mTabImgs = new int[]{R.mipmap.jingxuan, R.mipmap.bendi, R.mipmap.yuedu, R.mipmap.shujia, R.mipmap.wode};
-//    private int[] mSelTabImgs = new int[]{R.mipmap.jingxuan_blue, R.mipmap.bendi_blue, R.mipmap.yuedu_blue, R.mipmap.shujia_blue, R.mipmap.wode_blue};
+    private int[] mTabImgs = new int[]{R.mipmap.jingxuan, R.mipmap.jingxuan, R.mipmap.jingxuan, R.mipmap.jingxuan};
+    private int[] mSelTabImgs = new int[]{R.mipmap.jingxuan_blue, R.mipmap.jingxuan_blue, R.mipmap.jingxuan_blue, R.mipmap.jingxuan_blue};
 
 
     @Override
@@ -62,20 +66,20 @@ public class MainActivity extends BaseActiviy implements ViewPager.OnPageChangeL
         mTablayout.setupWithViewPager(mViewPager);
 
 
-//        for (int i = 0; i < mTablayout.getTabCount(); i++) {
-//            View view = LayoutInflater.from(this).inflate(R.layout.item_tab, null);
-//            ImageView mTabIcon = (ImageView) view.findViewById(R.id.main_tab_img);
-//            mTabIcon.setImageDrawable(this.getResources().getDrawable(mTabImgs[i]));
-//            TextView mTabText = (TextView) view.findViewById(R.id.main_tab_tv);
-//            mTabText.setText(mTabList.get(i));
-//            views.add(view);
-//            if (0 == i) {//the default color of item home is green
-//                mTabText.setTextColor(ContextCompat.getColor(this, R.color.color_00));
-//                mTabIcon.setImageResource(mSelTabImgs[0]);
-//            }
-//            mTablayout.getTabAt(i).setCustomView(view);
-//
-//        }
+        for (int i = 0; i < mTablayout.getTabCount(); i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.item_tab, null);
+            ImageView mTabIcon = (ImageView) view.findViewById(R.id.main_tab_img);
+            mTabIcon.setImageDrawable(this.getResources().getDrawable(mTabImgs[i]));
+            TextView mTabText = (TextView) view.findViewById(R.id.main_tab_tv);
+            mTabText.setText(mTabList.get(i));
+            views.add(view);
+            if (0 == i) {
+//                mTabText.setTextColor(ContextCompat.getColor(this, R.color.red_text));
+                mTabIcon.setImageResource(mSelTabImgs[0]);
+            }
+            mTablayout.getTabAt(i).setCustomView(view);
+
+        }
 
 
     }
@@ -105,26 +109,12 @@ public class MainActivity extends BaseActiviy implements ViewPager.OnPageChangeL
 
     @Override
     public void onPageSelected(int position) {
-//        title_rl.setVisibility(View.VISIBLE);
-//        if(position==0){
-//            mShowRightBtn.setBackgroundResource(R.mipmap.yuan);
-//        }else {
-//            mShowRightBtn.setBackgroundResource(R.mipmap.scan);
-//        }
-//        if(position==2){
-//            mBackBtn.setBackgroundResource(R.mipmap.download);
-//        }    else {
-//            mBackBtn.setBackgroundResource(R.mipmap.search);
-//        }
-//        if(position==3||position==4){
-//            title_rl.setVisibility(View.GONE);
-//        }
-//        for (int i = 0; i < mTablayout.getTabCount(); i++) {
-//            initView(i,mTabImgs,R.color.black);
-//        }
-//        if (!views.isEmpty()) {
-//            initView(position,mSelTabImgs,R.color.color_00);
-//        }
+        for (int i = 0; i < mTablayout.getTabCount(); i++) {
+            initView(i,mTabImgs,R.color.black);
+        }
+        if (!views.isEmpty()) {
+            initView(position,mSelTabImgs,R.color.red_text);
+        }
     }
 
     @Override
@@ -133,11 +123,11 @@ public class MainActivity extends BaseActiviy implements ViewPager.OnPageChangeL
     }
 
     private void initView(int postion,int[] img,int color) {
-//        View view = views.get(postion);
-//        ImageView mTabIcon = (ImageView) view.findViewById(R.id.main_tab_img);
-//        mTabIcon.setImageResource(img[postion]);
-//        TextView mTabText = (TextView) view.findViewById(R.id.main_tab_tv);
-//        mTabText.setTextColor(ContextCompat.getColor(this, color));
+        View view = views.get(postion);
+        ImageView mTabIcon = (ImageView) view.findViewById(R.id.main_tab_img);
+        mTabIcon.setImageResource(img[postion]);
+        TextView mTabText = (TextView) view.findViewById(R.id.main_tab_tv);
+        mTabText.setTextColor(ContextCompat.getColor(this, color));
 
     }
 
