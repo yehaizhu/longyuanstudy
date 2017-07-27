@@ -106,6 +106,7 @@
     <dimen name="dp230">230dp</dimen>
     <dimen name="dp240">240dp</dimen>
     <dimen name="dp250">250dp</dimen>
+    <dimen name="dp260">260dp</dimen>
     <dimen name="dp270">270dp</dimen>
     <dimen name="dp280">280dp</dimen>
     <dimen name="dp300">300dp</dimen>

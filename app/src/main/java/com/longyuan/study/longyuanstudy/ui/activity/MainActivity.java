@@ -57,9 +57,9 @@ public class MainActivity extends BaseActiviy implements ViewPager.OnPageChangeL
         homePagerAdapter.addTab(mFragments.get(2), mTabList.get(2));
         homePagerAdapter.addTab(mFragments.get(3), mTabList.get(3));
 
-//        mViewPager.addOnPageChangeListener(this);
-//        mViewPager.setAdapter(homePagerAdapter);
-//        mTablayout.setupWithViewPager(mViewPager);
+        mViewPager.addOnPageChangeListener(this);
+        mViewPager.setAdapter(homePagerAdapter);
+        mTablayout.setupWithViewPager(mViewPager);
 
 
 //        for (int i = 0; i < mTablayout.getTabCount(); i++) {
