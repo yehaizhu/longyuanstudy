@@ -12,11 +12,7 @@ import android.view.ViewGroup;
 
 import com.king.widget.SuperSwipeRefreshLayout;
 import com.zhuyehai.base.R;
-import com.zhuyehai.base.R2;
 import com.zhuyehai.base.util.TUtil;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by zhuyehai on 17/6/19.
@@ -25,9 +21,7 @@ import butterknife.ButterKnife;
 public abstract class BasePullFragment<T extends BasePresenter, E>  extends Fragment {
 
 
-    @BindView(android.R.id.list)
     RecyclerView mRecyclerView;
-    @BindView(R2.id.swipe_refresh)
     protected SuperSwipeRefreshLayout mSwipeRefreshWidget;
     private View rootView;
 
@@ -37,6 +31,7 @@ public abstract class BasePullFragment<T extends BasePresenter, E>  extends Frag
 
     protected int page = 1;
     protected boolean loadMore;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,11 +46,11 @@ public abstract class BasePullFragment<T extends BasePresenter, E>  extends Frag
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_pullrefresh, container, false);
         if (rootView != null) {
-            ButterKnife.bind(this, rootView);
             mPresenter = TUtil.getT(this, 0);
             mModel = TUtil.getT(this, 1);
             if (this instanceof BaseView) mPresenter.setVM(this, mModel);
-            ButterKnife.bind(this, rootView);
+            mRecyclerView = (RecyclerView) rootView.findViewById(android.R.id.list);
+            mSwipeRefreshWidget = (SuperSwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh);
             mRecyclerView.setHasFixedSize(true);
             mLayoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(mLayoutManager);
@@ -106,7 +101,7 @@ public abstract class BasePullFragment<T extends BasePresenter, E>  extends Frag
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        ButterKnife.unbind(this);
+
     }
 
     protected void onLoadMoreListener() {

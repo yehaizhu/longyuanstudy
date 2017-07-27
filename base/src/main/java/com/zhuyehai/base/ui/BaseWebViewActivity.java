@@ -6,9 +6,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.zhuyehai.base.R;
-import com.zhuyehai.base.R2;
 
-import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -16,8 +15,8 @@ import butterknife.BindView;
  */
 
 public abstract class BaseWebViewActivity extends BaseActiviy {
-    @BindView(R2.id.web_view)
     protected WebView mWebView;
+
 
 
     String mUrlContent;
@@ -35,6 +34,7 @@ public abstract class BaseWebViewActivity extends BaseActiviy {
 
     @Override
     protected void getData() {
+        mWebView = (WebView) this.findViewById(R.id.web_view);
         webViewSetting();
         if(loadUrlState()){
 //            xmlcontent = "<div class=\"baseinfo\" style=\"font-size: " + ((float) (mTextSize + 1)) + "em; line-height: " + ((float) (mTextSize + 2)) + "em;text-indent: " + 1.5 + "em\">" + "<div class=\"title\">" + getContentTitle() + "</div><div class=\"from\">" + getName() + "</div>" + "</div>" + "<div class=\"content\" style=\"font-size: " + ((float) (mTextSize + 1)) + "em; line-height: " + ((float) (mTextSize+ 2)) + "em \">" + getContent() + "</div>";
@@ -111,4 +111,8 @@ public abstract class BaseWebViewActivity extends BaseActiviy {
         }
     };
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

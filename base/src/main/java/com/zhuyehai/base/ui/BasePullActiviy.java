@@ -9,21 +9,16 @@ import android.support.v7.widget.RecyclerView;
 
 import com.king.widget.SuperSwipeRefreshLayout;
 import com.zhuyehai.base.R;
-import com.zhuyehai.base.R2;
 import com.zhuyehai.base.util.TUtil;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by zhuyehai on 17/6/16.
  */
 
 public abstract class BasePullActiviy<T extends BasePresenter, E> extends FragmentActivity {
-    @BindView(android.R.id.list)
     RecyclerView mRecyclerView;
-    @BindView(R2.id.swipe_refresh)
     protected SuperSwipeRefreshLayout mSwipeRefreshWidget;
+
 
 
 
@@ -34,15 +29,17 @@ public abstract class BasePullActiviy<T extends BasePresenter, E> extends Fragme
     protected int page = 1;
     protected boolean loadMore;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pullrefresh);
-        ButterKnife.bind(this);
         initData();
         mPresenter = TUtil.getT(this, 0);
         mModel = TUtil.getT(this, 1);
         if (this instanceof BaseView) mPresenter.setVM(this, mModel);
+        mRecyclerView = (RecyclerView) this.findViewById(android.R.id.list);
+        mSwipeRefreshWidget = (SuperSwipeRefreshLayout) this.findViewById(R.id.swipe_refresh);
         mLayoutManager = new LinearLayoutManager(this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -93,5 +90,8 @@ public abstract class BasePullActiviy<T extends BasePresenter, E> extends Fragme
 
     protected abstract void getData();
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

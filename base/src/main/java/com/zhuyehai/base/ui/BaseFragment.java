@@ -20,6 +20,7 @@ public abstract class BaseFragment<T extends BasePresenter, E> extends Fragment 
     private T mPresenter;
     private E mModel;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,5 +45,9 @@ public abstract class BaseFragment<T extends BasePresenter, E> extends Fragment 
 
     protected abstract void getData();
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
 }

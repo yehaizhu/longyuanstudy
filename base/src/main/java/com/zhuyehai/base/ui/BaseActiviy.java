@@ -24,7 +24,7 @@ public abstract class BaseActiviy<T extends BasePresenter, E> extends FragmentAc
         super.onCreate(savedInstanceState);
         initData();
         setContentView(getLayoutId());
-        ButterKnife.bind(this);
+         ButterKnife.bind(this);
         YHContext.getInstance().setContext(this);
         mPresenter = TUtil.getT(this, 0);
         mModel = TUtil.getT(this, 1);
@@ -60,6 +60,7 @@ public abstract class BaseActiviy<T extends BasePresenter, E> extends FragmentAc
         if (isEvent) {
             EventBus.getDefault().unregister(this);
         }
+        ButterKnife.unbind(this);
     }
 
     @Override
