@@ -27,7 +27,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     testCompile 'junit:junit:4.12'
-    compile 'com.jakewharton:butterknife:7.0.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.android.support:design:25.1.1'
     compile project(':base')
 
@@ -39,6 +39,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.alibaba:fastjson:1.1.46.android'
     compile 'com.taobao.android:weex_sdk:0.5.1@aar'
+
+
 
 
 }

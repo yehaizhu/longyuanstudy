@@ -20,7 +20,7 @@ import com.zhuyehai.base.ui.BaseActiviy;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 /**
@@ -28,9 +28,9 @@ import butterknife.Bind;
  */
 
 public class MainActivity extends BaseActiviy implements ViewPager.OnPageChangeListener {
-    @Bind(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager mViewPager;
-    @Bind(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout mTablayout;
 
     private List<String> mTabList = new ArrayList<>();

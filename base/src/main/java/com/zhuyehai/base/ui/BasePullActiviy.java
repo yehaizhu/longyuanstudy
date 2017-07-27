@@ -1,96 +1,97 @@
-//package com.zhuyehai.base.ui;
-//
-//import android.os.Bundle;
-//import android.support.annotation.Nullable;
-//import android.support.v4.app.FragmentActivity;
-//import android.support.v7.widget.DefaultItemAnimator;
-//import android.support.v7.widget.LinearLayoutManager;
-//import android.support.v7.widget.RecyclerView;
-//
-//import com.king.widget.SuperSwipeRefreshLayout;
-//import com.zhuyehai.base.R;
-//import com.zhuyehai.base.util.TUtil;
-//
-//import butterknife.Bind;
-//import butterknife.ButterKnife;
-//
-///**
-// * Created by zhuyehai on 17/6/16.
-// */
-//
-//public abstract class BasePullActiviy<T extends BasePresenter, E> extends FragmentActivity {
-//    @Bind(android.R.id.list)
-//    RecyclerView mRecyclerView;
-//    @Bind(R.id.swipe_refresh)
-//    protected SuperSwipeRefreshLayout mSwipeRefreshWidget;
-//
-//
-//
-//    private T mPresenter;
-//    private E mModel;
-//    private LinearLayoutManager mLayoutManager;
-//
-//    protected int page = 1;
-//    protected boolean loadMore;
-//
-//    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_pullrefresh);
-//        ButterKnife.bind(this);
-//        initData();
-//        mPresenter = TUtil.getT(this, 0);
-//        mModel = TUtil.getT(this, 1);
-//        if (this instanceof BaseView) mPresenter.setVM(this, mModel);
-//        mLayoutManager = new LinearLayoutManager(this);
-//
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//        mSwipeRefreshWidget.setColorSchemeResources(
-//                R.color.blueColor,
-//                R.color.material_green_200,
-//                R.color.redColor,
-//                R.color.material_yellow_900
-//        );
-//        mSwipeRefreshWidget.setOnRefreshListener(new SuperSwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh(SuperSwipeRefreshLayout.Direction direction) {
-//                if (direction == SuperSwipeRefreshLayout.Direction.TOP) {
-//                    onRefreshListener();
-//                } else if (direction == SuperSwipeRefreshLayout.Direction.BOTTOM) {
-//                    onLoadMoreListener();
-//                }
-//                mSwipeRefreshWidget.setRefreshing(false);
-//            }
-//
-//
-//        });
-//        initAdapter();
-//        getData();
-//
-//    }
-//
-//
-//    protected void onLoadMoreListener() {
-//        ++page;
-//        loadMore = true;
-//    }
-//
-//    protected void onRefreshListener() {
-//        page = 1;
-//        loadMore = false;
-//    }
-//
-//    public void setAdapter(RecyclerView.Adapter adapter) {
-//        mRecyclerView.setAdapter(adapter);
-//    }
-//
-//
-//    protected abstract void initData();
-//
-//    protected abstract void initAdapter();
-//
-//    protected abstract void getData();
-//
-//
-//}
+package com.zhuyehai.base.ui;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+import com.king.widget.SuperSwipeRefreshLayout;
+import com.zhuyehai.base.R;
+import com.zhuyehai.base.R2;
+import com.zhuyehai.base.util.TUtil;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by zhuyehai on 17/6/16.
+ */
+
+public abstract class BasePullActiviy<T extends BasePresenter, E> extends FragmentActivity {
+    @BindView(android.R.id.list)
+    RecyclerView mRecyclerView;
+    @BindView(R2.id.swipe_refresh)
+    protected SuperSwipeRefreshLayout mSwipeRefreshWidget;
+
+
+
+    private T mPresenter;
+    private E mModel;
+    private LinearLayoutManager mLayoutManager;
+
+    protected int page = 1;
+    protected boolean loadMore;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pullrefresh);
+        ButterKnife.bind(this);
+        initData();
+        mPresenter = TUtil.getT(this, 0);
+        mModel = TUtil.getT(this, 1);
+        if (this instanceof BaseView) mPresenter.setVM(this, mModel);
+        mLayoutManager = new LinearLayoutManager(this);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mSwipeRefreshWidget.setColorSchemeResources(
+                R.color.blueColor,
+                R.color.material_green_200,
+                R.color.redColor,
+                R.color.material_yellow_900
+        );
+        mSwipeRefreshWidget.setOnRefreshListener(new SuperSwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh(SuperSwipeRefreshLayout.Direction direction) {
+                if (direction == SuperSwipeRefreshLayout.Direction.TOP) {
+                    onRefreshListener();
+                } else if (direction == SuperSwipeRefreshLayout.Direction.BOTTOM) {
+                    onLoadMoreListener();
+                }
+                mSwipeRefreshWidget.setRefreshing(false);
+            }
+
+
+        });
+        initAdapter();
+        getData();
+
+    }
+
+
+    protected void onLoadMoreListener() {
+        ++page;
+        loadMore = true;
+    }
+
+    protected void onRefreshListener() {
+        page = 1;
+        loadMore = false;
+    }
+
+    public void setAdapter(RecyclerView.Adapter adapter) {
+        mRecyclerView.setAdapter(adapter);
+    }
+
+
+    protected abstract void initData();
+
+    protected abstract void initAdapter();
+
+    protected abstract void getData();
+
+
+}
