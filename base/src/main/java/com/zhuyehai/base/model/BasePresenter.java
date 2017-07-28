@@ -1,4 +1,4 @@
-package com.zhuyehai.base.ui;
+package com.zhuyehai.base.model;
 
 import android.content.Context;
 
